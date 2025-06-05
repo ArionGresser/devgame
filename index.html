@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Defesa do Muro</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #222;
+      color: #fff;
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #sidebar {
+      width: 220px;
+      padding: 20px;
+      background: #333;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    #gameCanvas {
+      flex: 1;
+      background: #111;
+      display: block;
+      margin: auto;
+      border: 2px solid #555;
+    }
+
+    #round-timer {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 48px;
+      color: yellow;
+      display: none;
+      pointer-events: none;
+      user-select: none;
+      font-weight: bold;
+    }
+
+    #gameOverScreen {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 18px;
+      display: none;
+      z-index: 10;
+    }
+
+    #gameOverScreen button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #444;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 8px;
+      background: #444;
+      border: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #666;
+    }
+
+    span.level {
+      font-weight: normal;
+      color: #aaa;
+      font-size: 12px;
+      margin-left: 6px;
+    }
+
+    .dmg-float {
+      position: absolute;
+      color: red;
+      font-weight: bold;
+      pointer-events: none;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <div>Rodada: <span id="round">1</span></div>
+    <div>Inimigos vivos: <span id="alive">0</span></div>
+    <div>Inimigos destruídos: <span id="destroyed">0</span></div>
+    <div>Dinheiro: R$<span id="money">60</span></div>
+
+    <button id="pauseBtn">Pausar</button>
+    <button id="speedBtn">1x</button>
+
+    <button id="upgradeDamageBtn">Melhorar Dano <span class="level" id="damageLevel">Nível: 0</span></button>
+    <button id="upgradeRateBtn">Melhorar Velocidade de Ataque <span class="level" id="rateLevel">Nível: 0</span></button>
+    <button id="upgradeWallBtn">Melhorar Vida do Muro <span class="level" id="wallLevel">Nível: 0</span></button>
+
+    <button id="restartBtn">Reiniciar</button>
+  </div>
+
+  <canvas id="gameCanvas" width="800" height="500"></canvas>
+  <div id="round-timer">5</div>
+
+  <div id="gameOverScreen">
+    <h2>Game Over</h2>
+    <p>Rodada: <span id="finalRound"></span></p>
+    <p>Inimigos destruídos: <span id="finalKilled"></span></p>
+    <button id="gameOverRestartBtn">Jogar Novamente</button>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
