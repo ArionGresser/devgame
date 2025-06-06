@@ -104,18 +104,18 @@ function shoot() {
   if (target) {
     const origin = { x: 70, y: canvas.height / 2 };
 
-    const dx0 = target.x + target.w / 2 - origin.x;
-    const dy0 = target.y + target.h / 2 - origin.y;
+    const dx0 = (target.x + target.w / 2) - origin.x;
+    const dy0 = (target.y + target.h / 2) - origin.y;
     const initialDist = Math.sqrt(dx0 * dx0 + dy0 * dy0);
     const bulletSpeed = 6 * speed;
     const timeToHit = initialDist / bulletSpeed;
 
-    const predictedX = target.x + target.speed * speed * timeToHit;
+    const predictedX = target.x - (target.speed * speed * timeToHit);
     const predictedY = target.y;
 
-    const dx = predictedX + target.w / 2 - origin.x;
-    const dy = predictedY + target.h / 2 - origin.y;
-    const dist = Math.sqrt(dx * dx + dy * dy); // << novo cálculo correto da distância
+    const dx = (predictedX + target.w / 2) - origin.x;
+    const dy = (predictedY + target.h / 2) - origin.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
 
     bullets.push({
       x: origin.x,
