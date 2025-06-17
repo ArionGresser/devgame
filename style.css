@@ -1,0 +1,12 @@
+.login {
+width: 100%;
+max-width: 400px; 
+border-radius: 1rem;
+}
+
+.btn-social {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+}

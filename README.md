@@ -1,2 +1,2 @@
 # devgame
-DevGame
+Developing game with Jonathan Alfredo
